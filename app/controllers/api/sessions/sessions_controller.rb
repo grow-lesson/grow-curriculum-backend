@@ -7,9 +7,15 @@ class Api::Sessions::SessionsController < Devise::SessionsController
 
     if user&.valid_password?(params[:password])
       sign_in(user)
-      render json: { message: 'ログインに成功しました' }, status: :ok
+      render json: { 
+        message: 'ログインに成功しました',
+        status: 201,
+      }, status: :ok
     else
-      render json: { error: 'ログインに失敗しました' }, status: :unauthorized
+      render json: { 
+        error: 'ログインに失敗しました',
+        status: 401,
+      }, status: :unauthorized
     end
   end
 end
