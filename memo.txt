@@ -5,7 +5,7 @@ https://tech-popeye.com/ruby-on-rails-mysql-windows/
 mysql install
 https://downloads.mysql.com/archives/c-c/
 
-ruby install
+ruby install(Ruby+Devkit 3.2.2-1 (x64) )
 https://rubyinstaller.org/downloads/
 
 手順
@@ -26,7 +26,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 7. rails db:migrate
 
-8. rails cでカラムを追加するときは（User.create(username: 'yuis' , email: 'example@gmail.com' , password: "hogehoge" )）
+8. rails cでカラムを追加するときは
+   User.create(name: 'grow' , email: 'example@gmail.com' , password: "admin" , hobbies: 'Soccer' , languages: 'Ruby' , bio: 'よろしくお願いします。' )
 　このようにemailとpassword両方必須である。
 
 
