@@ -55,7 +55,7 @@ test:
 10. rails db:create
 
 11. rails cでカラムを追加するときは
-   User.create(name: 'grow' , email: 'example@gmail.com' , password: "admin" , hobbies: 'Soccer' , languages: 'Ruby' , bio: 'よろしくお願いします。' )
+   User.create(name: 'grow' , email: 'example@gmail.com' , password: "grow-admin" , hobbies: 'Soccer' , languages: 'Ruby' , bio: 'よろしくお願いします。' )
 　このようにemailとpassword両方必須である。
 
 12. rails db:migrate
@@ -68,7 +68,6 @@ createは一回でよい。
 heroku install
 ・手順
 https://note.com/on_bass/n/n0495484a2b2b
-・ダウンロード先
 https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 
 1. heroku login
