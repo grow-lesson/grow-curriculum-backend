@@ -1,5 +1,5 @@
 # app/controllers/api/registrations_controller.rb
-Api::Sessions::RegistrationsController
+class Api::Sessions::RegistrationsController
   respond_to :json
 
   def create
