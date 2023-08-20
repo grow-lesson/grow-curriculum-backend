@@ -5,6 +5,9 @@ class Api::Sessions::RegistrationsController < ApplicationController
     build_resource(sign_up_params)
 
     if resource.save
+      # トークンの生成と保存
+      token = SecureRandom.hex(32) # 乱数によるトークン生成
+      resource.update(auth_token: token)
       sign_in(resource)
       render json: resource
     else
