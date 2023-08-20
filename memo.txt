@@ -83,4 +83,4 @@ https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
 
 6. heroku open
 
-一度でもデプロイが成功したらソースコードが変更されプッシュされたら3-6の手順だけでよい。
+一度でもデプロイが成功したらソースコードが変更されプッシュされたら4-6の手順だけでよい。
