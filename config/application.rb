@@ -1,6 +1,6 @@
 require_relative "boot"
-
 require "rails/all"
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,8 +13,11 @@ module GrowCurriculumBackend
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*' # 必要に応じて許可するオリジンを指定してください
-        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
+        origins 'https://grow-official.netlify.app/grow-curriculum/' # Vue.js アプリケーションの Netlify ドメイン
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          credentials: true
       end
     end
 
@@ -27,3 +30,4 @@ module GrowCurriculumBackend
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
