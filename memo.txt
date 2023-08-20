@@ -1,33 +1,86 @@
-環境構築(Windows)
-参考記事
-https://tech-popeye.com/ruby-on-rails-mysql-windows/
+環境構築(Windows)からデータベース作成、実装まで
 
-mysql install
-https://downloads.mysql.com/archives/c-c/
+postgresql install
+・ダウンロード先
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+→exeを実行し、パスワードは控えておく。
+・手順
+https://qiita.com/tom-sato/items/037b8f8cb4b326710f71
+→Windowsマークを押し、postgresqlフォルダを探す。pgAdmin4を開く。
 
 ruby install(Ruby+Devkit 3.2.2-1 (x64) )
 https://rubyinstaller.org/downloads/
 
+ruby on rails install
+・インストールコマンド
+gem install rails
+・バージョン確認
+rails -v
+
 手順
-1. rails new app_name -d mysql
+1. rails new app_name -d postgresql
 
-2. bundle install
-
-3. Gemfileの40行目を
+2. Gemfileの40行目を
 gem 'tzinfo-data'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 これに変える。
 
-4. bundle install
+3. bundle install
 
-5. database.ymlにusernameとpasswordを設定
+4. database.ymlにusernameとpasswordを設定
+例
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres(初期名)
+  password: postgresSQLをインストールし、開いたときに作った初期パスワード
+  host: localhost
 
-6. rails db:create
+development:
+  <<: *default  
+  database: データベース名_development
 
-7. rails db:migrate
+test:
+  <<: *default
+  database: データベース名_test
 
-8. rails cでカラムを追加するときは
+6. pgAdmin4の左のメニューから「Server」を選択。
+
+7.「postgreSQL」→「データベース」を右クリックし「登録」をクリック。
+
+8. 「General」タブのデータベース名は「データベース名_development」
+
+9. コントローラ、モデルの追加
+
+10. rails db:create
+
+11. rails cでカラムを追加するときは
    User.create(name: 'grow' , email: 'example@gmail.com' , password: "admin" , hobbies: 'Soccer' , languages: 'Ruby' , bio: 'よろしくお願いします。' )
 　このようにemailとpassword両方必須である。
 
+12. rails db:migrate
 
+createは一回でよい。
+モデル(データベースに変更がある場合はサーバーを一度止め、12の手順をしてからサーバーを起動。バンドルのインストールの場合も同様でサーバーの再起動後、3を実施)
+
+
+デプロイ(herokuの場合)
+heroku install
+・手順
+https://note.com/on_bass/n/n0495484a2b2b
+・ダウンロード先
+https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli
+
+1. heroku login
+
+2. heroku create
+
+3. heroku addons:create heroku-postgresql:mini
+
+4. git push heroku main(またはmaster)
+
+5. heroku run rails db:migrate
+
+6. heroku open
+
+一度でもデプロイが成功したらソースコードが変更されプッシュされたら3-6の手順だけでよい。
