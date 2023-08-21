@@ -1,13 +1,13 @@
-class Api::Sessions::RegistrationsController < ApplicationController
+class Api::Sessions::RegistrationsController < DeviseTokenAuth::RegistrationsController
   respond_to :json
 
   def create
-    build_resource(sign_up_params)
-
-    if resource.save
-      render json: resource
-    else
-      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+    super do |resource|
+      if resource.persisted?
+        render json: resource
+      else
+        render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+      end
     end
   end
 
