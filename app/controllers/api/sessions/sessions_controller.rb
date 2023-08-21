@@ -1,22 +1,20 @@
-class Api::Sessions::SessionsController < Devise::SessionsController
-  skip_before_action :verify_authenticity_token, only: :create
+class Api::Sessions::SessionsController < DeviseTokenAuth::SessionsController
+  skip_before_action :verify_authenticity_token
   respond_to :json
 
   def create
-    user = User.find_by(name: params[:name])
-
-    if user&.valid_password?(params[:password])
-      sign_in(user)
-      render json: { 
-        message: 'ログインに成功しました',
-        status: 201,
-      }, status: :ok
-    else
-      render json: { 
-        error: 'ログインに失敗しました',
-        status: 401,
-      }, status: :unauthorized
+    super do |resource|
+      if resource.persisted?
+        render json: {
+          message: 'ログインに成功しました',
+          status: 201,
+        }, status: :ok
+      else
+        render json: {
+          error: 'ログインに失敗しました',
+          status: 401,
+        }, status: :unauthorized
+      end
     end
   end
 end
-
