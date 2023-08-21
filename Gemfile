@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 gem 'devise' # ユーザー認証のためのGem
 gem 'rack-cors' # CORS設定のためのGem
 gem 'dotenv-rails', groups: [:development, :test] # .env ファイル内に環境変数を設定し、Railsアプリケーション内で利用できるようにする
+gem 'devise_token_auth' # トークン認証のためのGem
+gem 'omniauth', '>= 1.0.0'
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
