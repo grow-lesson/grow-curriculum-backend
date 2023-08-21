@@ -1,4 +1,4 @@
-class Api::Sessions::SessionsController < DeviseTokenAuth::SessionsController
+class Api::SessionsController < DeviseTokenAuth::SessionsController
   skip_before_action :verify_authenticity_token
   respond_to :json
 
