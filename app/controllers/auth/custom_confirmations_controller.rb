@@ -1,5 +1,5 @@
 # app/controllers/custom_confirmations_controller.rb
-class Auth:CustomConfirmationsController < DeviseTokenAuth::ConfirmationsController
+class Auth::CustomConfirmationsController < DeviseTokenAuth::ConfirmationsController
   protected
 
   def after_confirmation_path_for(resource_name, resource)
