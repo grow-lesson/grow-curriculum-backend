@@ -1,8 +1,14 @@
 class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   private
 
+  def render_create_error
+    render json: {
+      status: 'error',
+      errors: resource.errors.full_messages,
+    }, status: :unprocessable_entity
+  end
+
   def sign_up_params
     params.permit(:username, :email, :password, :last_name_kana, :first_name_kana)
-    delete '/auth/sign_out', to: 'sessions#destroy' # ログアウト用のルート
   end
 end
