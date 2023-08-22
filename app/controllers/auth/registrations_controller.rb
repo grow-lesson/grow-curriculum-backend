@@ -10,5 +10,6 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
 
   def sign_up_params
     params.permit(:username, :name, :email, :password, :last_name_kana, :first_name_kana)
+    puts "Sign Up Params: #{params}"
   end
 end
