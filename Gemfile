@@ -44,7 +44,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'devise' # ユーザー認証のためのGem
 gem 'rack-cors' # CORS設定のためのGem
 gem 'dotenv-rails', groups: [:development, :test] # .env ファイル内に環境変数を設定し、Railsアプリケーション内で利用できるようにする
 gem 'devise_token_auth' # トークン認証のためのGem

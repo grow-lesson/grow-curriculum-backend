@@ -246,7 +246,6 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  devise
   devise_token_auth
   dotenv-rails
   importmap-rails
