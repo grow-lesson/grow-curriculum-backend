@@ -1,0 +1,7 @@
+<p>こんにちは！<%= @resource.name %>さん</p>
+
+<p>アカウントの確認ありがとうございます。以下のリンクをクリックして、アカウントを有効にしてください。</p>
+
+<p><%= link_to 'アカウントを確認する', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>もし心当たりがない場合は、このメールを無視してください。</p>
