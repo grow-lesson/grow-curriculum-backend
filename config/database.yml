@@ -18,7 +18,7 @@ development:
   username: <%= ENV['DATABASE_DEV_USERNAME'] %>
   password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
   host: localhost
-  database: grow_curriculum_backend_development
+  database: grow_curriculum_backend_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
