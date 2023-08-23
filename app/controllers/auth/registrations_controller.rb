@@ -4,7 +4,7 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
       if resource.persisted?
         render_create_success
       else
-        render_create_error
+        render_create_error(resource) # リソースを引数として渡す
       end
     end
   end
@@ -18,7 +18,7 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
     }
   end
 
-  def render_create_error
+  def render_create_error(resource) # リソースを引数として受け取る
     render json: {
       status: 'error',
       errors: resource.errors.full_messages,
