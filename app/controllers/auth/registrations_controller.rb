@@ -1,4 +1,14 @@
 class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
+  def create
+    super do |resource|
+      if resource.persisted?
+        render_create_success
+      else
+        render_create_error
+      end
+    end
+  end
+  
   private
 
   def render_create_success
