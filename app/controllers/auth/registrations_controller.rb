@@ -1,11 +1,11 @@
 class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   def create
-    super do |resource|
-      if resource.persisted?
-        render_create_success
-      else
-        render_create_error(resource) # リソースを引数として渡す
-      end
+    build_resource(sign_up_params) # Userモデルのインスタンスを生成し、属性を設定する
+
+    if resource.save
+      render_create_success
+    else
+      render_create_error(resource)
     end
   end
   
