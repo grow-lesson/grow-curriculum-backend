@@ -1,11 +1,27 @@
 class Auth::SessionsController < DeviseTokenAuth::SessionsController
-  private
-  def destroy
-    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    render json: { success: true, message: 'ログアウトしました' }, status: :ok if signed_out
+  def create
+    super do |resource|
+      if resource
+        render_login_success(resource)
+      else
+        render_login_error
+      end
+    end
   end
 
-  def resource_params
-    params.permit(:email, :password)
+  private
+
+  def render_login_success(resource)
+    render json: {
+      status: 'success',
+      data: resource_data(resource),
+    }
+  end
+
+  def render_login_error
+    render json: {
+      status: 'error',
+      errors: ['Invalid credentials'],
+    }, status: :unauthorized
   end
 end
