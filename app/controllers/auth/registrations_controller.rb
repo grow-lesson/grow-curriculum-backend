@@ -1,32 +1,27 @@
 class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   def create
-    # ユーザーを新規作成するためのリソースを生成
-    build_new_auth_resource
+    user = User.new(sign_up_params) # Userモデルのインスタンスを生成し、属性を設定する
 
-    # パラメータを設定
-    resource.assign_attributes(sign_up_params)
-
-    # 保存を試みる
-    if resource.save
-      render_create_success
+    if user.save
+      render_create_success(user)
     else
-      render_create_error(resource)
+      render_create_error(user)
     end
   end
-
+  
   private
 
-  def render_create_success
+  def render_create_success(user)
     render json: {
       status: 'success',
-      data: resource_data(resource),
+      data: resource_data(user),
     }
   end
 
-  def render_create_error(resource)
+  def render_create_error(user)
     render json: {
       status: 'error',
-      errors: resource.errors.full_messages,
+      errors: user.errors.full_messages,
     }, status: :unprocessable_entity
   end
 
