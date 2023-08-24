@@ -1,15 +1,19 @@
 class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   def create
-    puts "Params: #{sign_up_params.inspect}!" # デバッグログ出力
-    build_resource # Userモデルのインスタンスを生成し、属性を設定する
+    # ユーザーを新規作成するためのリソースを生成
+    build_new_auth_resource
 
+    # パラメータを設定
+    resource.assign_attributes(sign_up_params)
+
+    # 保存を試みる
     if resource.save
       render_create_success
     else
       render_create_error(resource)
     end
   end
-  
+
   private
 
   def render_create_success
@@ -19,7 +23,7 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
     }
   end
 
-  def render_create_error(resource) # リソースを引数として受け取る
+  def render_create_error(resource)
     render json: {
       status: 'error',
       errors: resource.errors.full_messages,
