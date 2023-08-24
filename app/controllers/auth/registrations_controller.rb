@@ -1,7 +1,7 @@
 class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   def create
-    puts "Params: #{sign_up_params.inspect}" # デバッグログ出力
-    build_resource(sign_up_params) # Userモデルのインスタンスを生成し、属性を設定する
+    puts "Params: #{sign_up_params.inspect}!" # デバッグログ出力
+    build_resource # Userモデルのインスタンスを生成し、属性を設定する
 
     if resource.save
       render_create_success
