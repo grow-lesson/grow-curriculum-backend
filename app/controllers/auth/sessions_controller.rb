@@ -35,5 +35,9 @@ class Auth::SessionsController < DeviseTokenAuth::SessionsController
       expiry: (Time.now + DeviseTokenAuth.token_lifespan).to_i,
     }
     resource.save!
+    # レスポンスヘッダーにアクセストークン関連情報を設定
+    response.headers['access-token'] = @token
+    response.headers['client'] = @client_id
+    response.headers['uid'] = resource.uid
   end
 end
