@@ -2,19 +2,31 @@
 class Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsController
   before_action :authenticate_user!
 
-  # バリデーション処理
+  # トークンのバリデーション処理
   def validate_token
     # トークンが有効かを確認
     if current_user
-      render json: {
-        success: true,
-        data: resource_data(current_user),
-      }
+      render_validate_token_success_response
     else
-      render json: {
-        success: false,
-        errors: ['Invalid token'],
-      }, status: :unauthorized
+      render_validate_token_failure_response
     end
+  end
+
+  private
+
+  # トークンが有効な場合のレスポンスを返す
+  def render_validate_token_success_response
+    render json: {
+      status: 'success',
+      data: resource_data(current_user),
+    }
+  end
+
+  # トークンが無効な場合のレスポンスを返す
+  def render_validate_token_failure_response
+    render json: {
+      status: 'error',
+      errors: ['Invalid token'],
+    }, status: :unauthorized
   end
 end
