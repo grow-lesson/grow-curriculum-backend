@@ -55,7 +55,7 @@ test:
 10. rails db:create
 
 11. rails cでカラムを追加するときは
-   User.create(name: 'grow' , email: 'example@gmail.com' , password: "grow-admin" , hobbies: 'Soccer' , languages: 'Ruby' , bio: 'よろしくお願いします。' )
+   User.create(name: 'grow company' , last_name_kana: 'グロウ' , first_name_kana: 'カンパニー' , email: 'example@gmail.com' , password: "grow-admin" , hobbies: 'Soccer' , languages: 'Ruby' , bio: 'よろしくお願いします。' )
 　このようにemailとpassword両方必須である。
 
 12. rails db:migrate
