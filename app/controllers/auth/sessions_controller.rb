@@ -10,7 +10,7 @@ class Auth::SessionsController < DeviseTokenAuth::SessionsController
     if @resource&.valid_password?(password) && @resource&.confirmed?
       create_token_info(@resource)
       render json: {
-        status: 'success',
+        status: 201,
         data: resource_data(@resource),
       }
     else
@@ -22,7 +22,7 @@ class Auth::SessionsController < DeviseTokenAuth::SessionsController
 
   def render_login_error
     render json: {
-      status: 'error',
+      status: 401,
       errors: ['Invalid credentials'],
     }, status: :unauthorized
   end

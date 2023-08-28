@@ -13,14 +13,14 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
 
   def render_create_success(user)
     render json: {
-      status: 'success',
+      status: 201,
       data: resource_data(user),
     }
   end
 
   def render_create_error(user)
     render json: {
-      status: 'error',
+      status: 401,
       errors: user.errors.full_messages,
     }, status: :unprocessable_entity
   end

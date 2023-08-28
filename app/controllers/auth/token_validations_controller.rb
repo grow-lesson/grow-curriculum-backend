@@ -17,7 +17,7 @@ class Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsContro
   # トークンが有効な場合のレスポンスを返す
   def render_validate_token_success_response
     render json: {
-      status: 'success',
+      status: 200,
       data: resource_data(current_user),
     }
   end
@@ -25,7 +25,7 @@ class Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsContro
   # トークンが無効な場合のレスポンスを返す
   def render_validate_token_failure_response
     render json: {
-      status: 'error',
+      status: 401,
       errors: ['Invalid token'],
     }, status: :unauthorized
   end
