@@ -35,7 +35,7 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   end
 
   def update_params
-    params.permit(:name, :email, :password, :last_name_kana, :first_name_kana)
+    params.permit(:username, :name, :email, :password, :password_confirmation, :last_name_kana, :first_name_kana, :hobbies, :languages, :bio)
   end
 
   def render_create_success(user)
