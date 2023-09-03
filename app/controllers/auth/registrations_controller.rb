@@ -8,8 +8,35 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
       render_create_error(user)
     end
   end
+
+  # ユーザー情報を更新するアクション
+  def update
+    if current_user.update(update_params)
+      render_update_success(current_user)
+    else
+      render_update_error(current_user)
+    end
+  end
   
   private
+
+  def render_update_success(user)
+    render json: {
+      status: 200,
+      data: resource_data(user),
+    }
+  end
+
+  def render_update_error(user)
+    render json: {
+      status: 422, # ユーザー情報の更新エラーはHTTPステータスコード422 (Unprocessable Entity)を返すのが一般的です
+      errors: user.errors.full_messages,
+    }, status: :unprocessable_entity
+  end
+
+  def update_params
+    params.permit(:name, :email, :password, :last_name_kana, :first_name_kana)
+  end
 
   def render_create_success(user)
     render json: {

@@ -4,7 +4,5 @@ Rails.application.routes.draw do
     sessions: 'auth/sessions',
     token_validations: 'auth/token_validations',
   }
-  # プロフィールの更新ルート
-  put '/update_profile', to: 'users#update_profile'
 end
 
