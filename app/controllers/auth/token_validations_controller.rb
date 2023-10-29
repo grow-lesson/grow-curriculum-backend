@@ -4,6 +4,8 @@ class Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsContro
 
   # トークンのバリデーション処理
   def validate_token
+    # キャッシュ無効化のヘッダーを設定
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     # トークンが有効かを確認
     if current_user
       render_validate_token_success_response
