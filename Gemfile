@@ -47,7 +47,6 @@ gem "bootsnap", require: false
 gem 'rack-cors' # CORS設定のためのGem
 gem 'dotenv-rails', groups: [:development, :test] # .env ファイル内に環境変数を設定し、Railsアプリケーション内で利用できるようにする
 gem 'devise_token_auth' # トークン認証のためのGem
-gem 'activerecord-session_store' # セッションをデータベースに保存
 
 
 # Use Sass to process CSS
